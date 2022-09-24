@@ -10,7 +10,10 @@ const TVWatch: FC = () => {
   const { id } = useParams();
   const { data, error } = useQuery<getWatchReturnedType, Error>(
     ["watchTV", id],
-    () => getWatchTV(Number(id as string))
+    () => getWatchTV(Number(id as string)),
+    {
+      networkMode: "offlineFirst"
+    }
   );
 
   const [queryParams] = useSearchParams();

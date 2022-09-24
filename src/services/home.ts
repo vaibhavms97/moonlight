@@ -14,8 +14,14 @@ export const getHomeMovies = async (): Promise<HomeFilms> => {
   };
 
   const responses = await Promise.all(
-    Object.entries(endpoints).map((endpoint) => axios.get(endpoint[1]))
+    Object.entries(endpoints).map((endpoint) => {
+      console.log("Fething data of"+ endpoint[1])
+      return axios.get(endpoint[1]);
+    })
   );
+
+  console.log("Hello")
+  console.log(responses);
 
   const data = responses.reduce((final, current, index) => {
     final[Object.entries(endpoints)[index][0]] = current.data.results.map(

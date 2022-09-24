@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
@@ -30,7 +30,9 @@ const Home: FC = () => {
     isLoading: isLoadingMovie,
     isError: isErrorMovie,
     error: errorMovie,
-  } = useQuery<HomeFilms, Error>(["home-movies"], getHomeMovies);
+  } = useQuery<HomeFilms, Error>(["home-movies"], getHomeMovies, {
+    networkMode: "offlineFirst"
+  });
 
   const {
     data: dataMovieDetail,
@@ -40,7 +42,9 @@ const Home: FC = () => {
   } = useQuery<any, Error>(
     ["detailMovies", dataMovie?.Trending],
     () => getMovieBannerInfo(dataMovie?.Trending as Item[]),
-    { enabled: !!dataMovie?.Trending }
+    { enabled: !!dataMovie?.Trending,
+      networkMode: "offlineFirst"
+    }
   );
 
   const {
@@ -48,7 +52,9 @@ const Home: FC = () => {
     isLoading: isLoadingTV,
     isError: isErrorTV,
     error: errorTV,
-  } = useQuery<HomeFilms, Error>(["home-tvs"], getHomeTVs);
+  } = useQuery<HomeFilms, Error>(["home-tvs"], getHomeTVs, {
+    networkMode: "offlineFirst"
+  });
 
   const {
     data: dataTVDetail,
@@ -58,7 +64,9 @@ const Home: FC = () => {
   } = useQuery<any, Error>(
     ["detailTvs", dataTV?.Trending],
     () => getTVBannerInfo(dataTV?.Trending as Item[]),
-    { enabled: !!dataTV?.Trending }
+    { enabled: !!dataTV?.Trending,
+      networkMode: "offlineFirst"
+    }
   );
 
   if (isErrorMovie) return <p>ERROR: {errorMovie.message}</p>;

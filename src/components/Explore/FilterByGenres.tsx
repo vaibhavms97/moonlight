@@ -17,7 +17,9 @@ const FilterByGenres: FunctionComponent<FilterByGenresProps> = ({
   const { isLoading, data, isError, error } = useQuery<
     getRecommendGenres2Type,
     Error
-  >(["genres"], getRecommendGenres2);
+  >(["genres"], getRecommendGenres2, {
+    networkMode: "offlineFirst"
+  });
 
   const [searchParam, setSearchParam] = useSearchParams();
 

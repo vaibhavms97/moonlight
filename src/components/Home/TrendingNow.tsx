@@ -7,7 +7,9 @@ import RightbarFilms from "../Common/RightbarFilms";
 const TrendingNow: FC = () => {
   const { isLoading, data, isError, error } = useQuery<Item[], Error>(
     ["trending"],
-    getTrendingNow
+    getTrendingNow, {
+      networkMode: "offlineFirst"
+    }
   );
 
   if (isError) return <div>ERROR: ${error.message}</div>;

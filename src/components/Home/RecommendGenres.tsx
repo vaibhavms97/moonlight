@@ -25,7 +25,7 @@ const RecommendGenres: FC<RecommendGenresProps> = ({ currentTab }) => {
   const { isLoading, data, isError, error } = useQuery<
     getRecommendGenres2Type,
     Error
-  >(["genres"], getRecommendGenres2);
+  >(["genres"], getRecommendGenres2, {networkMode: "offlineFirst"});
 
   if (isError) return <div>ERROR: {error.message}</div>;
 

@@ -10,7 +10,10 @@ const MovieWatch: FC = () => {
   const { id } = useParams();
   const { data, error } = useQuery<getWatchReturnedType, Error>(
     ["watchMovie", id],
-    () => getWatchMovie(Number(id as string))
+    () => getWatchMovie(Number(id as string)),
+    {
+      networkMode: "offlineFirst"
+    }
   );
 
   // if (error) return <div>ERROR: {error.message}</div>;

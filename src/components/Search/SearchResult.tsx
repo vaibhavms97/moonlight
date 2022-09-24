@@ -24,6 +24,7 @@ const SearchResult: FunctionComponent<SearchResultProps> = ({
     () => getSearchResult(currentTab, query, page),
     {
       keepPreviousData: true,
+      networkMode: "offlineFirst"
     }
   );
 

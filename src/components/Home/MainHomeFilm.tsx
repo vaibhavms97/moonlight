@@ -17,6 +17,7 @@ const MainHomeFilms: FC<MainHomeFilmsProps> = ({
   isLoadingBanner,
   isLoadingSection,
 }) => {
+  {console.log("Movies")}
   return (
     <>
       <BannerSlider

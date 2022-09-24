@@ -11,7 +11,10 @@ const TVInfo: FC = () => {
 
   const { data, isError, error } = useQuery<FilmInfo, Error>(
     ["tvDetail", id],
-    () => getTVFullDetail(Number(id as string))
+    () => getTVFullDetail(Number(id as string)),
+    {
+      networkMode: "offlineFirst"
+    }
   );
 
   // if (isError) return <div>ERROR: {error.message}</div>;
