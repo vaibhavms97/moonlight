@@ -17,6 +17,8 @@ const TVInfo: FC = () => {
     }
   );
 
+  console.log(id);
+
   // if (isError) return <div>ERROR: {error.message}</div>;
   if (isError) return <Error />;
   // if (isLoading) return <div>Loading...</div>;
